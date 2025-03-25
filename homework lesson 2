@@ -1,0 +1,77 @@
+# Locators
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from time import sleep
+
+# Get path to the Chromedriver executable
+driver_path = ChromeDriverManager().install()
+
+# Create a new Chrome browser instance
+service = Service(driver_path)
+driver = webdriver.Chrome(service=service)
+driver.maximize_window()
+
+# open the url
+driver.get('https://www.Amazon.com/')
+sleep(5)
+
+amazon_logo_locator = driver.find_element(By.XPATH, "//a[@aria-label='Amazon']")
+
+email_field_locator = driver.find_element(By.ID, "ap_email")
+
+continue_button_locator = driver.find_element(By.ID, "continue")
+
+conditions_of_use_locator = driver.find_element(By.XPATH, "//a[contains(@href, 'conditions')]")
+
+privacy_notice_locator = driver.find_element(By.XPATH, "//a[contains(@href, 'privacy')]")
+
+need_help_locator = driver.find_element(By.XPATH, "//a[contains(text(), 'Need help?')]")
+
+forgot_password_locator = driver.find_element(By.ID, "auth-ffp-link-bottom")
+
+other_issues_locator = driver.find_element(By.XPATH, "//a[contains(text(), 'Other issues with Sign-In')]")
+
+create_account_locator = driver.find_element(By.ID, "createAccountSubmit")
+
+#2 Target test case
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from time import sleep
+
+# Set up Chrome options for incognito mode
+chrome_options = Options()
+chrome_options.add_argument("--incognito")
+
+# set up the chrome driver
+service = Service('path/to/chromedriver')
+driver = webdriver.Chrome(service=service, options=chrome_options)
+
+
+# Step 1: Open the url
+driver.get('https://www.target.com/')
+sleep(2)
+
+# Step 2: Click SignIn button
+sign_in_button = driver.find_element(By.XPATH, "//a[contains(text(), 'Sign in')]")
+sign_in_button.click()
+sleep(2)
+
+# Step 3: Click SignIn from side navigation
+side_nav_sign_in = driver.find_element(By.XPATH, "//a[contains(text(), 'Sign in')]")
+side_nav_sign_in.click()
+sleep(2)
+
+# Step 4: Verify SignIN page opened
+# Check for the presence of the "Sign in to your Target account" text
+sign_in_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Sign into your Target account')]")
+sign_in_button_present = driver.find_element(By.XPATH, "//button[contains(text(), 'Sign in')]")
+
+# Print results
+print("Sign in text is present:", sign_in_text.is_displayed())
+print("Sign in button is present:", sign_in_button_present.is_displayed())
+
+driver.quit()
